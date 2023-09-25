@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    background: black; /*  sets background colour */
+}
+
+.header, .section, .footer { /* common reused attributes of each div */
+    display: flex;
+    align-items: start;
+    width: 50vw;
+}
+
+.container /*  main content area encasing entire password generator */
+{
+    background: #1F2937;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 60vw;
+    margin: 20px auto 60px auto;
+    padding: 5px;
+}
+
+.header /*  encases main title and subtitle text */
+{
+    justify-content: end;
+    flex-direction: column;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 0px;
+    margin-top: auto;
+    height: 35vh;
+}
+
+.title /*  main title */
+{
+    color: #FFF;
+    font-family: Karla, sans-serif;
+    font-size: 4vw;
+    font-style: normal;
+    font-weight: 800;
+    letter-spacing: -1px;
+    width: 35vw;
+    margin-bottom: 0px;
+}
+
+#title-selection /*  subsection of main title - "random password" */
+{
+    color: #4ADF86;
+}
+
+.subtitle /* subtitle found underneath main title */
+{
+    color: #D5D4D8;
+    font-family: Inter, sans-serif;
+    font-weight: 200;
+    font-size: 2.1vw;
+    margin: 10px 0px 0px 0px;
+}
+
+.section /*  encases button */
+{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    margin: 20px auto auto auto;
+    height: 20vh;
+    width: 50vw;
+}
+
+.footer /*  encases password options area at bottom of container  */
+{
+    justify-content: center;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    color: #55F991;
+    font-family: Inter, sans-serif;
+    font-size: 1.8vw;
+    text-align: center;
+    border-top: 2px solid #2F3E53;
+    height: 27vh;
+}
+
+.btn /*  "Generate Passwords" button */
+{
+    color:#FFF;
+    font-family: Inter, sans-serif;
+    font-size: 1.5vw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    border-radius: 6px;
+    padding: 8px 12px 8px 12px;
+    background: #10B981;
+    width: 20vw;
+}
+
+.footer-passwords /*  encases individual password options */
+{
+    border-radius: 6px;
+    background: #273549;
+    padding: 6px;
+    width: 28vw;
+    height: 4.1vh;
+    margin-top: 20px;
+}
+
+#first-option /*  adjusts first password option position */
+{
+    margin-right: 4vw;
+}
