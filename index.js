@@ -25,7 +25,7 @@ function keyboardCopier() //copies currently selected password to keyboard and d
       })
       .catch(() => {
         alert("something went wrong" + currentSelection.textContent + "-" + firstPasswordOption);
-      });;
+      });; 
   }
 
 function generatePasswordOptions() { // calls generateRandomPassword(length) to set first and second password
