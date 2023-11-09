@@ -1,113 +1,261 @@
 body {
     margin: 0;
-    background: black; /*  sets background colour */
+    background: black;
 }
 
-.header, .section, .footer { /* common reused attributes of each div */
-    display: flex;
-    align-items: start;
-    width: 50vw;
-}
-
-.container /*  main content area encasing entire password generator */
-{
-    background: #1F2937;
+.container,
+.header, 
+.generate-section, 
+.footer 
+{ 
     display: flex;
     justify-content: center;
+    width: 85%;
+}
+
+.container,
+.generate-btn,
+.footer-passwords,
+.alert
+{
+    padding: 0.5em;
+    border-radius: 5px;
+}
+
+.container {
+    background: #1F2937;
     align-items: center;
     flex-direction: column;
-    width: 60vw;
-    margin: 20px auto 60px auto;
-    padding: 5px;
-}
-
-.header /*  encases main title and subtitle text */
-{
-    justify-content: end;
-    flex-direction: column;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 0px;
-    margin-top: auto;
-    height: 35vh;
-}
-
-.title /*  main title */
-{
-    color: #FFF;
+    width: 55%;
+    margin: 1em auto;
+    border: 2px solid #7a7a7a;
     font-family: Karla, sans-serif;
-    font-size: 4vw;
+}
+
+
+/* ----- header section  -----*/
+.header {
+    flex-direction: column;
+    align-items: start;
+    margin: 0 auto;
+    margin-bottom: 1em;
+}
+
+.title {
+    color: #FFF;
+    font-size: 3.2rem;
     font-style: normal;
     font-weight: 800;
     letter-spacing: -1px;
-    width: 35vw;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
-#title-selection /*  subsection of main title - "random password" */
-{
+.title-selection {
     color: #4ADF86;
+    margin-top: 0;
 }
 
-.subtitle /* subtitle found underneath main title */
-{
+.subtitle {
     color: #D5D4D8;
     font-family: Inter, sans-serif;
     font-weight: 200;
-    font-size: 2.1vw;
-    margin: 10px 0px 0px 0px;
+    font-size: 1.4rem;
+    margin: 0.8em 0 0 0;
 }
 
-.section /*  encases button */
-{
-    display: flex;
-    justify-content: center;
+
+/* ----- generate section ----- */
+.generate-section {
     align-items: start;
-    flex-direction: column;
-    margin: 20px auto auto auto;
-    height: 20vh;
-    width: 50vw;
-}
-
-.footer /*  encases password options area at bottom of container  */
-{
-    justify-content: center;
     flex-direction: row;
-    margin-right: auto;
-    margin-left: auto;
-    color: #55F991;
-    font-family: Inter, sans-serif;
-    font-size: 1.8vw;
-    text-align: center;
-    border-top: 2px solid #2F3E53;
-    height: 27vh;
+    flex-wrap: wrap;
+    margin: 2.2em auto 1em auto;
+    box-sizing: border-box;
 }
 
-.btn /*  "Generate Passwords" button */
-{
+.generate-btn {
     color:#FFF;
     font-family: Inter, sans-serif;
-    font-size: 1.5vw;
+    font-size: 1.1rem;
     font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-    border-radius: 6px;
-    padding: 8px 12px 8px 12px;
+    font-weight: 500;
+    line-height: 1.5em;
+    padding: 0.5em 0.8em;
     background: #10B981;
-    width: 20vw;
+    width: 43%;
+    margin: 1em auto 0 0;
 }
 
-.footer-passwords /*  encases individual password options */
-{
-    border-radius: 6px;
+.passwordSlider {
+    -webkit-appearance: none; 
+    appearance: none;
+    margin: 1.5em auto 0 auto;
+    width: 13rem;
+    height: 0.7rem;
+    background: #FFF;
+    border: 1px solid #FFF;
+    border-radius: 10px;
+}
+
+.passwordSlider::-webkit-slider-thumb {
+    appearance: none;
+    width: 1.5rem; 
+    height: 1.5rem; 
+    background: #10B981; 
+    cursor: pointer; 
+    border-radius: 50%;
+}
+  
+.passwordLength {
+    margin: 0em 5.9em 4em auto;
+    color: #FFF;
+    background: #10B981;
+    border-radius: 5px;
+    width: 24.5%;
+    padding: 0.2em 0.3em;
+    font-size: 1rem;
+}
+
+
+/* ----- footer section ----- */
+.footer {
+    flex-direction: row;
+    align-items: start;
+    margin: auto auto 2em auto;
+    color: #55F991;
+    font-family: Inter, sans-serif;
+    font-size: 1.4rem;
+    text-align: center;
+    border-top: 2px solid #7a7a7a;
+}
+
+.footer-passwords {
     background: #273549;
-    padding: 6px;
-    width: 28vw;
-    height: 4.1vh;
-    margin-top: 20px;
+    width: 45%;
+    height: 16%;
+    margin-top: 1.5em;
 }
 
-#first-option /*  adjusts first password option position */
+#first-option {
+    margin-right: 2em;
+}
+
+/* alert message and toggle class */
+.alert {
+    background: #273549;
+    width: 20%;
+    height: 13%;
+    border: 2px solid #7a7a7a;
+    position: absolute;
+    top: 6%;
+    left: 40%;
+    font-size: 1.5rem;
+    line-height: 2em;
+    color: #55F991;
+    text-align: center;
+}
+
+.none {
+    opacity: 0;
+}
+
+
+/* ----- smaller screensize ----- */
+
+@media (max-width: 1100px)
 {
-    margin-right: 4vw;
+    .title {
+        font-size: 2.4rem;
+    }
+
+    .subtitle, .footer {
+        font-size: 1.092rem;
+    }
+
+    .generate-btn {
+        font-size: 0.9rem;
+        width: 35%;
+    }
+
+    .passwordSlider {
+        width: 11rem;
+        margin: 1.3em auto 0 auto;
+    }
+
+    .passwordLength {
+        font-size: 0.9rem;
+        margin: 0em 5.3em 3.5em auto;
+        width: 28%;
+    }
+
+    .alert {
+        font-size: 1.185rem;
+        padding: 0.2em
+    }
+}
+
+@media (max-width: 950px)
+{
+    .passwordSlider {
+        width: 10em;
+        margin: 1em 0em 3em auto;
+    }
+
+    .passwordLength {
+        width: 35%;
+        margin: 0em 0em 3.5em auto;
+    }
+}
+
+@media (max-width: 570px)
+{
+    .container {
+        width: 90%;
+        margin: 1em auto;
+    }
+
+    .header, 
+    .generate-section, 
+    .footer {
+        width: 95%;
+    }
+
+    .title {
+        font-size: 1.6rem;
+    }
+
+    .subtitle {
+        font-size: 0.8rem;
+    }
+
+    .generate-btn {
+        font-size: 0.7rem;
+        width: 44%;
+    }
+
+    .passwordSlider {
+        width: 7rem;
+        height: 0.5rem;
+        margin: 1em 0em 3em auto;
+    }
+
+    .passwordLength {
+        font-size: 0.7rem;
+        margin: 0em 0em 3.5em auto;
+        width: 32%;
+    }
+
+    .footer-passwords {
+        width: 60%;
+        font-size: 1rem;
+        margin: 2em 0;
+    }
+
+    .alert {
+        font-size: 0.9rem;
+        padding: 0.2em;
+        width: 38%;
+        height: 7%;
+        left: 32%;
+    }
 }

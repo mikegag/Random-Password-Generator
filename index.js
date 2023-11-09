@@ -1,46 +1,63 @@
-//array storing all possible characters for password creation
-const characters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U",
-"V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u",
-"v","w","x","y","z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9","~","`","!","@","#","$","%","^",
-"&","*","(",")","_","-","+","=","{","[","}","]",",","|",":",";","<",">",".","?",
-"/"];
+//characters array stores all possible keyboard characters for password creation
+const characters = [...Array(95).keys()].map(i => String.fromCharCode(i+32))
+const firstPassword = document.getElementById("first-option")
+const secondPassword = document.getElementById("second-option")
+const generateBtn = document.getElementById("generate-btn")
 
-const firstPassword = document.getElementById("first-option"); //selects first password 
-const secondPassword = document.getElementById("second-option"); //selects second password 
-let currentSelection = ""; //stores currently selected password, either first or second password
-const passwordLength = 11; //password length
+document.body.addEventListener("click", (e)=> {
+    generateRandomPassword(e.target.id)
+    setSelectedPassword(e.target.id)
+    updatePasswordLength(e.target.id) 
+})
 
-firstPassword.addEventListener("click", () => setSelectedPassword(firstPassword)); //selects first password for copy sequence
-secondPassword.addEventListener("click", () => setSelectedPassword(secondPassword)); //selects second password for copy sequence
+//generates a single random password
+function generateRandomPassword(id) {   
+    if(id === generateBtn.id) {
+        let passwordOption = ""
+        let passwordLength = document.getElementById("passwordSlider").value
 
-function setSelectedPassword(element) { //sets currently selected password to either first or second password
-    currentSelection = element.textContent;
-    keyboardCopier();
-}
-
-function keyboardCopier() //copies currently selected password to keyboard and displays alert if successful
-{
-    navigator['clipboard'].writeText(currentSelection).then(() => {
-        alert("successfully Copied Password: " + currentSelection);
-      })
-      .catch(() => {
-        alert("something went wrong" + currentSelection.textContent + "-" + firstPasswordOption);
-      });; 
-  }
-
-function generatePasswordOptions() { // calls generateRandomPassword(length) to set first and second password
-    firstPassword.textContent = generateRandomPassword(passwordLength);
-    secondPassword.textContent = generateRandomPassword(passwordLength);
-}
-
-function generateRandomPassword(length) // sets a random password option and returns it 
-{   
-    let password = ""
-    
-    for(let i = 0; i < length; i++) {
-        const index = Math.floor(Math.random() * characters.length);
-        password += characters[index];
+        for(let i = 0; i < passwordLength; i++) {
+            const index = Math.floor(Math.random() * characters.length)
+            passwordOption += characters[index]
+        }
+        return passwordOption
     }
-    return password
 }
 
+//displays first and second password options to page
+function displayPasswordOptions() {
+    firstPassword.textContent = generateRandomPassword(generateBtn.id)
+    secondPassword.textContent = generateRandomPassword(generateBtn.id)
+}
+
+//selects current password option after user click
+function setSelectedPassword(password) {
+    if(password === firstPassword.id) {keyboardCopier(firstPassword.textContent)}
+    else if(password === secondPassword.id) {keyboardCopier(secondPassword.textContent)}
+}
+
+//copies selected password to keyboard
+function keyboardCopier(password) {
+    navigator['clipboard'].writeText(password)
+
+    //checks if alert message structure exists, then displays alert and removes it
+    if(!document.getElementById("alert")) { 
+        document.getElementById("header").innerHTML += 
+            ` <div class ="alert" id ="alert"> COPIED PASSWORD: </br> 
+                <span id ="alert-password"> ${password} </span> </div> `
+        setTimeout(()=>{ document.getElementById("alert").classList.toggle("none")}, 2800)
+    }
+    //if alert message structure exists, its conversion is replaced with new selection
+    else {
+        document.getElementById("alert").classList.toggle("none")
+        document.getElementById("alert-password").textContent = password       
+        setTimeout(()=>{ document.getElementById("alert").classList.toggle("none")}, 2800)
+    }
+}
+
+function updatePasswordLength(id) {
+    if(id === document.getElementById("passwordSlider").id) {
+        document.getElementById("passwordLength").textContent = 
+            document.getElementById("passwordSlider").value
+    }
+}
